@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router';
+import { auth } from '../firebase';
 
 class Navigation extends Component {
 
@@ -24,20 +25,8 @@ class Navigation extends Component {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                {   
-                                   ( localStorage.getItem('idCliente') !== 'undefined' && localStorage.getItem('idCliente') !== null) ?
-                                    <Link className="nav-link" to="/profileCliente">
-                                    Perfil
-                                    </Link>
-                                    :
-                                   <Link className="nav-link" to="/login">
-                                   Iniciar Sesión
-                                  </Link>
-                                }
-                            </li>
                             <li>
-                                <button className="btn btn-dark" type="button"  onClick={this.refreshPage}>
+                                <button className="btn btn-dark" type="button"  onClick={() => auth.signOut()}>
                                     Salir
                                 </button>
                             </li>

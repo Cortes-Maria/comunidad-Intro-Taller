@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { signInWithGoogle } from '../firebase';
+import { auth } from '../firebase';
 
 export default class Login extends Component {
 
@@ -29,6 +31,13 @@ export default class Login extends Component {
         window.location.href = "/alertas"
     }
 
+    signInWithEmailAndPasswordHandler = (event, email, password) => {
+        event.preventDefault();
+        auth.signInWithEmailAndPassword(email, password).catch(error => {
+          console.error("Error signing in with password and email", error);
+        });
+    };
+
     render() {
         return (
            <div className="col-md-6 offset-md-3 mt-5 mb-5">
@@ -41,10 +50,18 @@ export default class Login extends Component {
                         <input type="password" className="form-control" name="password" placeholder="Password" required="required"  onChange = {this.onChangePassword} />
                     </div>
                    <form onSubmit={this.onSubmit}>
-                        <button type="submit" className="btn btn-dark">
+                        <button type="submit" className="btn btn-dark mb-2" onClick={event => {
+                            this.signInWithEmailAndPasswordHandler(event, this.state.email, this.state.pass);
+                        }}>
                             Acceder
                         </button>
                    </form>
+                    <hr></hr>
+                   <div className="row">
+                        <div className="col-md-12"> 
+                            <a className="btn btn-lg btn-google btn-block btn-outline" onClick={signInWithGoogle}><img alt="" src="https://img.icons8.com/color/16/000000/google-logo.png"></img> Inicia con Google</a> 
+                        </div>
+                    </div>
                    
                </div>
                <div className="modal-footer">

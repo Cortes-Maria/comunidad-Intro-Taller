@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { signInWithGoogle } from '../firebase';
+import { auth } from '../firebase';
+import { generateUserDocument } from '../firebase';
+
 
 export default class SignUp extends Component {
     state = {
@@ -7,6 +10,7 @@ export default class SignUp extends Component {
         info : '',
         email: '',
         password: '',
+        displayName: ''
       };
 
       handleChecked = this.handleChecked.bind(this);
@@ -43,12 +47,29 @@ export default class SignUp extends Component {
         })
         console.log(e.target.value)
     }
- 
 
-    onSubmit =  async e => {
-        e.preventDefault();
-        window.location.href = "/alertas"
+    onChangeDisplayName = (e) => {
+        this.setState({
+            displayName: e.target.value
+        })
+        console.log(e.target.value)
     }
+ 
+    createUserWithEmailAndPasswordHandler = async (event, email, password, displayName) => {
+        event.preventDefault();
+        try{
+          const {user} = await auth.createUserWithEmailAndPassword(email, password);
+          generateUserDocument(user, {displayName});
+        }
+        catch(error){
+          console.log('Error Signing up with email and password');
+        }
+    
+        this.setState({
+            email: "",
+            password: ""
+        })
+      };
 
     render() {
         return (
@@ -68,12 +89,12 @@ export default class SignUp extends Component {
                     </div>
                     <div className="form-group">
                         <input
-                            type="password"
+                            type="text"
                             className="form-control"
-                            name="password"
-                            placeholder="Password"
+                            name="displayName"
+                            placeholder="Username"
                             required="required"
-                            onChange = {this.onChangePassword}
+                            onChange = {this.onChangeDisplayName}
                         />
                     </div>
                     <div className="form-group">
@@ -88,10 +109,19 @@ export default class SignUp extends Component {
                     </div>
                     <div className="row">
                         <div className="col text-center">
-                            <button type="submit" className="btn btn-primary">
+                            <button type="submit" className="btn btn-primary"
+                                onClick={event => {
+                                    this.createUserWithEmailAndPasswordHandler(event, this.state.email, this.state.password, this.state.displayName);
+                                }}>
                                 Registrar
                             </button>
                         </div>
+                    </div>
+                    <hr></hr>
+                    <div className="row">
+                            <div className="col-md-12"> 
+                                <a className="btn btn-lg btn-google btn-block btn-outline" onClick={signInWithGoogle}><img alt="" src="https://img.icons8.com/color/16/000000/google-logo.png"></img> Inicia con Google</a> 
+                            </div>
                     </div>
 
                 </form>
