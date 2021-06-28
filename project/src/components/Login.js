@@ -65,7 +65,7 @@ export default class Login extends Component {
                    
                </div>
                <div className="modal-footer">
-				        ¿Nuevo en Alerta Movil? 
+				        ¿Nuevo? 
                         <Link to="/signup">
                         Registrate
                         </Link>

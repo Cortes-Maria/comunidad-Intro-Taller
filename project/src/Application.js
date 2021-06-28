@@ -27,8 +27,8 @@ function Application() {
                     :
                     <Router>
                         <Navigation/>
-                        <Route path="/" exact component={Login} />
-                        <Route path="/home" component={Home}/>
+                        <Route path="/login" exact component={Login} />
+                        <Route path="/" exact component={Home}/>
                         <Route path="/alertas" component={Alertas}/>
                         <Route path="/signup" component={SignUp}/>
                         <Route path="/zones" component={Zonas}/>

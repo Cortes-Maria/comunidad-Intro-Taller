@@ -26,10 +26,16 @@ class Navigation extends Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ml-auto">
                             <li>
-                                <button className="btn btn-dark" type="button"  onClick={() => auth.signOut()}>
-                                    Salir
+                                <Link className="navbar-brand" to="/login">
+                                    Login
+                                </Link>
+                            </li>
+                            <li>
+                                <button  className="btn btn-dark" type="button"  onClick={() => auth.signOut()}>
+                                    Log Out
                                 </button>
                             </li>
+                            
                         </ul>
                     </div>
                 </div>
