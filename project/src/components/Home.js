@@ -1,10 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import Ejercicio from './Ejercicio';
 import { db } from '../firebase';
+import { makeStyles } from '@material-ui/core/styles';
+import Select from '@material-ui/core/Select';
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+    label: {
+      color: "white"
+    },
+    select: {
+      borderRadius: "16px",
+    }
+  }));
+
+
+
 
 function Home() {
 
     const [exercises, setExercises] = useState([]);
+
+    const classes = useStyles();
+    const [state, setState] = React.useState({
+      age: '',
+      name: 'hai',
+      section: "Algoritmos numéricos"
+    });
 
     useEffect(() => {
         db.ref('/').on('value', snapshot => {
@@ -15,21 +43,56 @@ function Home() {
             setExercises(allExercises)
           });
     }, []);
-    
+
+    const handleChange = (event) => {
+        const name = event.target.name;
+        setState({
+          ...state,
+          [name]: event.target.value,
+          section: event.target.value
+        });
+        
+      };
   
     return (
         <div>
-            <h4 style={{ marginTop: 20 }} className="text-center">Algoritmos</h4>
+            <div style={{margin: "30px"}}>
+                <Select
+                    native
+                    variant="outlined"
+                    value={state.age}
+                    onChange={handleChange}
+                    inputProps={{
+                        name: 'age',
+                        id: 'filled-age-native-simple',
+                    }}
+                    className={classes.select}
+                >
+
+                    <option style={{ color: 'black' }} value={"Algoritmos numéricos"}>Númericos</option>
+                    <option style={{ color: 'black' }} value={"Árboles"}>Árboles Binarios</option>
+                    <option style={{ color: 'black' }} value={"Listas, vectores y matrices"}>Listas y Matrices</option>
+                </Select>
+            </div>
+
+            <div> 
+            
                 {
-                     exercises.map((item) => (
+                    exercises.map((item) => (
                         <div>
-                            <Ejercicio data={item}></Ejercicio>
+                            {
+                                item.section === state.section?
+                                <Ejercicio data={item}></Ejercicio>
+                                :
+                                null
+                            }          
                         </div>
                     ))
 
                 }
-        </div>
 
+            </div>
+        </div>
 
     );
     

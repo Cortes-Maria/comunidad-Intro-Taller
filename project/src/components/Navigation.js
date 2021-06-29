@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router';
 import { auth } from '../firebase';
 
+
 class Navigation extends Component {
 
     refreshPage() {
