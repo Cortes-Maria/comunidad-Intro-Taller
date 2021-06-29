@@ -21,7 +21,7 @@ function Application() {
                     user  ?
                     <Router>
                         <Navigation/>
-                        <Home/>
+                        <Home isAdmin={true}/>
                     </Router> 
                    
                     :

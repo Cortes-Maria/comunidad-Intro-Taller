@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function Home() {
+function Home(props) {
 
     const [exercises, setExercises] = useState([]);
 
@@ -82,10 +82,10 @@ function Home() {
                         <div>
                             {
                                 item.section === state.section?
-                                <Ejercicio data={item}></Ejercicio>
+                                <Ejercicio isAdmin={props.isAdmin} data={item}></Ejercicio>
                                 :
                                 null
-                            }          
+                            }         
                         </div>
                     ))
 
