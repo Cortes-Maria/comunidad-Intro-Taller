@@ -59,7 +59,7 @@ export default class Login extends Component {
                     <hr></hr>
                    <div className="row">
                         <div className="col-md-12"> 
-                            <a className="btn btn-lg btn-google btn-block btn-outline" onClick={signInWithGoogle}><img alt="" src="https://img.icons8.com/color/16/000000/google-logo.png"></img> Inicia con Google</a> 
+                            <a className="btn btn-lg btn-google btn-block btn-outline" style={{color: 'black'}} onClick={signInWithGoogle}><img alt="" src="https://img.icons8.com/color/16/000000/google-logo.png"></img> Inicia con Google</a> 
                         </div>
                     </div>
                    
