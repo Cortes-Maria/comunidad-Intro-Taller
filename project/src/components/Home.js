@@ -4,6 +4,8 @@ import { db } from '../firebase';
 
 function Home() {
 
+    const [exercises, setExercises] = useState([]);
+
     useEffect(() => {
         db.ref('/').on('value', snapshot => {
             let allExercises = [];
@@ -12,8 +14,8 @@ function Home() {
             });
             setExercises(allExercises)
           });
-    });
-    const [exercises, setExercises] = useState([]);
+    }, []);
+    
   
     return (
         <div>

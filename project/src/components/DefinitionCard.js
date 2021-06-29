@@ -7,7 +7,7 @@ function DefinitionCard(props) {
     return (
     
         <div class="col-sm-6">
-            <div class="card">
+            <div class="card" style={{margin: "20px"}}>
                 <div class="card-header">
                     Definición
                 </div>
