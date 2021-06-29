@@ -8,8 +8,8 @@ function Ejercicio(props) {
     return (
 
         <div class="row" style={{marginInline: "auto"}}>
-            <DefinitionCard data={props.data}></DefinitionCard>
-            <SolutionCard data={props.data}></SolutionCard>
+            <DefinitionCard isAdmin={props.isAdmin} data={props.data} ></DefinitionCard>
+            <SolutionCard isAdmin={props.isAdmin} data={props.data}></SolutionCard>
         </div>
   
     );

@@ -20,10 +20,26 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+    label: {
+      color: "white"
+    },
+    select: {
+      borderRadius: "16px",
+    }
+  }));
 
 
 
-function Home() {
+
+function Home(props) {
 
     const [exercises, setExercises] = useState([]);
 
@@ -82,10 +98,10 @@ function Home() {
                         <div>
                             {
                                 item.section === state.section?
-                                <Ejercicio data={item}></Ejercicio>
+                                <Ejercicio isAdmin={props.isAdmin} data={item}></Ejercicio>
                                 :
                                 null
-                            }          
+                            }         
                         </div>
                     ))
 
