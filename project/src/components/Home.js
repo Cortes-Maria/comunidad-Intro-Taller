@@ -20,6 +20,22 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+    label: {
+      color: "white"
+    },
+    select: {
+      borderRadius: "16px",
+    }
+  }));
+
 
 
 
