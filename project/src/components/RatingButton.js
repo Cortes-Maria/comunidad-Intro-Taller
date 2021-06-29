@@ -1,24 +1,23 @@
-import React, { useState } from 'react';
-import { MDBContainer, MDBRating } from 'mdbreact';
+import React, { useState } from "react";
+import { MDBContainer, MDBRating } from "mdbreact";
 
 const RatingPage = () => {
   const [basic] = useState([
     {
-      tooltip: 'Very Bad'
+      tooltip: "Very Bad",
     },
     {
-      tooltip: 'Poor'
+      tooltip: "Poor",
     },
     {
-      tooltip: 'Ok',
-      choosed: true
+      tooltip: "Ok",
     },
     {
-      tooltip: 'Good'
+      tooltip: "Good",
     },
     {
-      tooltip: 'Excellent'
-    }
+      tooltip: "Excellent",
+    },
   ]);
 
   return (
