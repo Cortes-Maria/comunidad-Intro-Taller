@@ -6,6 +6,7 @@ import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import FormChart from "./FormChart";
 
+
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -24,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Home() {
   const [exercises, setExercises] = useState([]);
+
 
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -52,6 +54,7 @@ function Home() {
     });
   };
 
+
   return (
     <div>
       <div style={{ margin: "30px" }}>
@@ -79,6 +82,21 @@ function Home() {
             Listas y Matrices
           </option>
         </Select>
+
+            <div> 
+            
+                {
+                    exercises.map((item) => (
+                        <div>
+                            {
+                                item.section === state.section?
+                                <Ejercicio isAdmin={props.isAdmin} data={item}></Ejercicio>
+                                :
+                                null
+                            }         
+                        </div>
+                    ))
+
 
         <Button
           onClick={() => setState({ showNewExercise: !state.showNewExercise })}
