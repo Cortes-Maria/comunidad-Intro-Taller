@@ -1,10 +1,12 @@
 * {
-  color: rgb(80, 79, 79);
+  color: rgb(0, 0, 0);
 }
 
 .footer-btn {
   margin: 5px;
   float: right;
+  background-color: rgb(154, 210, 255);
+  border-radius: 5px;
 }
 
 .text-area {
@@ -19,4 +21,17 @@
 
 .atribute-input {
   vertical-align: middle;
+}
+
+.insert {
+  display: inline-table;
+  margin: 10px;
+  background-color: rgb(229, 239, 240);
+}
+
+.insert-btn {
+  margin: 10px;
+  vertical-align: middle;
+  background-color: rgb(154, 210, 255);
+  border-radius: 5px;
 }

@@ -19,11 +19,51 @@ function FormChart(props) {
     inputs: [],
     outputs: [],
   });
+  const [example, setExample] = React.useState({
+    call: "",
+    result: "",
+    comment: "",
+  });
+
+  const [input, setInput] = React.useState({
+    name: "",
+    type: "",
+  });
+
+  const [output, setOutput] = React.useState({
+    name: "",
+    type: "",
+  });
+
   const [exercises, setExercises] = useState([]);
 
   const handleChange = (event) => {
     setState({
       ...state,
+      [event.target.name]: event.target.value,
+    });
+    console.log(event.target.name + " " + event.target.value);
+  };
+
+  const handleChanceExample = (event) => {
+    setExample({
+      ...example,
+      [event.target.name]: event.target.value,
+    });
+    console.log(event.target.name + " " + event.target.value);
+  };
+
+  const handleChanceInput = (event) => {
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value,
+    });
+    console.log(event.target.name + " " + event.target.value);
+  };
+
+  const handleChanceOutput = (event) => {
+    setOutput({
+      ...output,
       [event.target.name]: event.target.value,
     });
     console.log(event.target.name + " " + event.target.value);
@@ -53,17 +93,20 @@ function FormChart(props) {
     return max.toString();
   };
 
-  //const jsonObj = "{ \"call\":"
-
   const addNewExercise = () => {
     const call = JSON.parse(JSON.stringify(state.call));
     const creator = JSON.parse(JSON.stringify(state.creator));
-    const code = JSON.parse(JSON.stringify(getCode()));
+    let code = JSON.parse(JSON.stringify(state.solution_code));
     const level = JSON.parse(JSON.stringify(state.level));
     const created = JSON.parse(JSON.stringify(getCurrentDate()));
     const name = JSON.parse(JSON.stringify(state.name));
     const section = JSON.parse(JSON.stringify(state.section));
     const details = JSON.parse(JSON.stringify(state.details));
+    const examples = JSON.parse(JSON.stringify(state.examples));
+    const inputs = JSON.parse(JSON.stringify(state.inputs));
+    const outputs = JSON.parse(JSON.stringify(state.outputs));
+    const solution = { outputs, code, inputs };
+    code = JSON.parse(JSON.stringify(getCode()));
 
     console.log("Code: " + code);
 
@@ -77,6 +120,8 @@ function FormChart(props) {
         name,
         section,
         details,
+        examples,
+        solution,
       })
       .then((_) => {
         setState({
@@ -96,10 +141,66 @@ function FormChart(props) {
       });
   };
 
+  const addExample = () => {
+    const call = JSON.parse(JSON.stringify(example.call));
+    const result = JSON.parse(JSON.stringify(example.result));
+    const comment = JSON.parse(JSON.stringify(example.comment));
+
+    state.examples.push({ call, result, comment });
+
+    setExample({
+      call: "",
+      result: "",
+      comment: "",
+    });
+  };
+
+  const addInput = () => {
+    const name = JSON.parse(JSON.stringify(input.name));
+    const type = JSON.parse(JSON.stringify(input.type));
+
+    state.inputs.push({ name, type });
+
+    setInput({
+      name: "",
+      type: "",
+    });
+  };
+
+  const addOutput = () => {
+    const name = JSON.parse(JSON.stringify(input.name));
+    const type = JSON.parse(JSON.stringify(input.type));
+
+    state.outputs.push({ name, type });
+
+    setOutput({
+      name: "",
+      type: "",
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     addNewExercise();
     console.log("You clicked submit.");
+  };
+
+  const handleSubmitExample = (e) => {
+    e.preventDefault();
+    addExample();
+    console.log("You added an example");
+  };
+
+  const handleSubmitInput = (e) => {
+    e.preventDefault();
+    addInput();
+    console.log("You added an input");
+  };
+
+  const handleSubmitOutput = (e) => {
+    e.preventDefault();
+    addOutput();
+    console.log("You added an output");
   };
 
   return props.trigger ? (
@@ -185,6 +286,91 @@ function FormChart(props) {
             onChange={handleChange}
           />
         </div>
+      </div>
+      <div class="insert">
+        <label class="atribute-label" for="call">
+          Llamada:
+        </label>{" "}
+        <input
+          class="atribute-input"
+          type="text"
+          id="call"
+          name="call"
+          onChange={handleChanceExample}
+        />
+        <label class="atribute-label" for="result">
+          Resultado:
+        </label>{" "}
+        <input
+          class="atribute-input"
+          type="text"
+          id="result"
+          name="result"
+          onChange={handleChanceExample}
+        />
+        <label class="atribute-label" for="comment">
+          Commentario:
+        </label>{" "}
+        <input
+          class="atribute-input"
+          type="text"
+          id="comment"
+          name="comment"
+          onChange={handleChanceExample}
+        />
+        <button onClick={handleSubmitExample} class="insert-btn">
+          Insertar Ejemplo
+        </button>
+      </div>
+      <div class="insert">
+        <label class="atribute-label" for="name">
+          Nombre:
+        </label>{" "}
+        <input
+          class="atribute-input"
+          type="text"
+          id="name"
+          name="name"
+          onChange={handleChanceInput}
+        />
+        <label class="atribute-label" for="type">
+          Tipo:
+        </label>{" "}
+        <input
+          class="atribute-input"
+          type="text"
+          id="type"
+          name="type"
+          onChange={handleChanceInput}
+        />
+        <button onClick={handleSubmitInput} class="insert-btn">
+          Insertar Input
+        </button>
+      </div>
+      <div class="insert">
+        <label class="atribute-label" for="name">
+          Nombre:
+        </label>{" "}
+        <input
+          class="atribute-input"
+          type="text"
+          id="name"
+          name="name"
+          onChange={handleChanceInput}
+        />
+        <label class="atribute-label" for="type">
+          Tipo:
+        </label>{" "}
+        <input
+          class="atribute-input"
+          type="text"
+          id="type"
+          name="type"
+          onChange={handleChanceOutput}
+        />
+        <button onClick={handleSubmitOutput} class="insert-btn">
+          Insertar Output
+        </button>
       </div>
       <div class="card-footer">
         <form onSubmit={handleSubmit}>
