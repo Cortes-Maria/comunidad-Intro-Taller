@@ -4,21 +4,6 @@ import { db } from '../firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles((theme) => ({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-    label: {
-      color: "white"
-    },
-    select: {
-      borderRadius: "16px",
-    }
-  }));
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
