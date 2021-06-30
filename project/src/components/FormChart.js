@@ -219,6 +219,7 @@ function FormChart(props) {
             type="text"
             id="name"
             name="name"
+            value={state.name}
             onChange={handleChange}
           />
           <label class="atribute-label" for="creator">
@@ -229,6 +230,7 @@ function FormChart(props) {
             type="text"
             id="creator"
             name="creator"
+            value={state.creator}
             onChange={handleChange}
           />
           <label class="atribute-label" for="level">
@@ -239,6 +241,7 @@ function FormChart(props) {
             type="text"
             id="level"
             name="level"
+            value={state.level}
             onChange={handleChange}
           />
         </div>
@@ -251,6 +254,7 @@ function FormChart(props) {
             type="text"
             id="section"
             name="section"
+            value={state.section}
             onChange={handleChange}
           />
           <label class="atribute-label" for="call">
@@ -261,6 +265,7 @@ function FormChart(props) {
             type="text"
             id="call"
             name="call"
+            value={state.call}
             onChange={handleChange}
           />
         </div>
@@ -273,6 +278,7 @@ function FormChart(props) {
             type="textarea"
             id="details"
             name="details"
+            value={state.details}
             onChange={handleChange}
           />
           <label class="atribute-label" for="solution_code">
@@ -283,6 +289,7 @@ function FormChart(props) {
             type="textarea"
             id="solution_code"
             name="solution_code"
+            value={state.solution_code}
             onChange={handleChange}
           />
         </div>
@@ -296,6 +303,7 @@ function FormChart(props) {
           type="text"
           id="call"
           name="call"
+          value={example.call}
           onChange={handleChanceExample}
         />
         <label class="atribute-label" for="result">
@@ -306,6 +314,7 @@ function FormChart(props) {
           type="text"
           id="result"
           name="result"
+          value={example.result}
           onChange={handleChanceExample}
         />
         <label class="atribute-label" for="comment">
@@ -316,6 +325,7 @@ function FormChart(props) {
           type="text"
           id="comment"
           name="comment"
+          value={example.comment}
           onChange={handleChanceExample}
         />
         <button onClick={handleSubmitExample} class="insert-btn">
@@ -331,6 +341,7 @@ function FormChart(props) {
           type="text"
           id="name"
           name="name"
+          value={input.name}
           onChange={handleChanceInput}
         />
         <label class="atribute-label" for="type">
@@ -341,6 +352,7 @@ function FormChart(props) {
           type="text"
           id="type"
           name="type"
+          value={input.type}
           onChange={handleChanceInput}
         />
         <button onClick={handleSubmitInput} class="insert-btn">
@@ -356,6 +368,7 @@ function FormChart(props) {
           type="text"
           id="name"
           name="name"
+          value={output.name}
           onChange={handleChanceInput}
         />
         <label class="atribute-label" for="type">
@@ -366,6 +379,7 @@ function FormChart(props) {
           type="text"
           id="type"
           name="type"
+          value={output.type}
           onChange={handleChanceOutput}
         />
         <button onClick={handleSubmitOutput} class="insert-btn">
