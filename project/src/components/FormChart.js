@@ -23,6 +23,7 @@ function FormChart(props) {
 
   const handleChange = (event) => {
     setState({
+      ...state,
       [event.target.name]: event.target.value,
     });
     console.log(event.target.name + " " + event.target.value);
@@ -47,68 +48,35 @@ function FormChart(props) {
       });
       setExercises(allExercises);
     });
-    let max = 0;
-    for (let i = 0; i < exercises.length; i++) {
-      let x = parseInt(exercises[i].code);
-      console.log(x);
-      max = Math.max(x, max);
-    }
+    let max = exercises.length + 1;
     console.log(max);
-    return (max + 1).toString();
+    return max.toString();
   };
 
-  const addNewExercise = () => {
-    const call = state.call;
-    const code = getCode();
-    const created = "statecreated";
-    const creator = "statecreator";
-    const details = "statedetails";
-    const examples = [
-      {
-        call: "cantidadDeDigitos(12345)",
-        result: "5",
-        comment: "",
-      },
-      {
-        call: "cantidadDeDigitos(0)",
-        result: "1",
-        comment: "Cero tiene un digito",
-      },
-      {
-        call: "cantidadDeDigitos(9)",
-        result: "1",
-        comment: "",
-      },
-    ];
-    const level = "statelevel";
-    const name = "state.name";
-    const section = "statesection";
-    const solution_code =
-      "def cantidadDigitos (num):\n\n    if num == 0: # El 0 es una excepción\n        return 1\n    num = abs(num) #lo hace positivo siempre\n    contador = 0\n    while num > 0:\n        contador = contador + 1\n        num = num // 10\n    return contador";
-    const inputs = {
-      name: "num",
-      type: "numero entero positivo o cero",
-    };
-    const outputs = {
-      name: "resultado",
-      type: "numero entero",
-    };
-    const solution = [solution_code, inputs, outputs];
+  //const jsonObj = "{ \"call\":"
 
-    console.log(code);
+  const addNewExercise = () => {
+    const call = JSON.parse(JSON.stringify(state.call));
+    const creator = JSON.parse(JSON.stringify(state.creator));
+    const code = JSON.parse(JSON.stringify(getCode()));
+    const level = JSON.parse(JSON.stringify(state.level));
+    const created = JSON.parse(JSON.stringify(getCurrentDate()));
+    const name = JSON.parse(JSON.stringify(state.name));
+    const section = JSON.parse(JSON.stringify(state.section));
+    const details = JSON.parse(JSON.stringify(state.details));
+
+    console.log("Code: " + code);
 
     db.ref(`/${code}`)
-      .push({
+      .set({
         call,
-        code,
-        created,
         creator,
-        details,
-        examples,
+        code,
         level,
+        created,
         name,
         section,
-        solution,
+        details,
       })
       .then((_) => {
         setState({
