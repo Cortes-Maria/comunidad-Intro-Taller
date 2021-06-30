@@ -1,0 +1,22 @@
+* {
+  color: rgb(80, 79, 79);
+}
+
+.footer-btn {
+  margin: 5px;
+  float: right;
+}
+
+.text-area {
+  vertical-align: middle;
+  width: 20%;
+}
+
+.atribute-label {
+  margin: 1%;
+  vertical-align: middle;
+}
+
+.atribute-input {
+  vertical-align: middle;
+}

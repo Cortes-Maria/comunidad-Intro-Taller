@@ -3,6 +3,8 @@ import Ejercicio from "./Ejercicio";
 import { db } from "../firebase";
 import { makeStyles } from "@material-ui/core/styles";
 import Select from "@material-ui/core/Select";
+import Button from "@material-ui/core/Button";
+import FormChart from "./FormChart";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -28,6 +30,7 @@ function Home() {
     age: "",
     name: "hai",
     section: "Algoritmos numéricos",
+    showNewExercise: false,
   });
 
   useEffect(() => {
@@ -76,6 +79,20 @@ function Home() {
             Listas y Matrices
           </option>
         </Select>
+
+        <Button
+          onClick={() => setState({ showNewExercise: !state.showNewExercise })}
+          variant="contained"
+          color="info"
+          style={{ float: "right" }}
+        >
+          Nuevo Ejercicio
+        </Button>
+
+        <FormChart
+          trigger={state.showNewExercise}
+          setTrigger={setState}
+        ></FormChart>
       </div>
 
       <div>
